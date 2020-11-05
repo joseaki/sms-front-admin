@@ -2,18 +2,18 @@
   "users": [
     {
       "username": "admin",
-      "password": "admin",
-      "id": 1
-    },
-    {
-      "username": "admin",
-      "password": "admin",
+      "password": "jose",
       "id": 2
     },
     {
       "username": "admin",
       "password": "admin",
       "id": 3
+    },
+    {
+      "username": "joseaki@icloud.com",
+      "password": "admin2",
+      "id": 4
     }
   ]
 }

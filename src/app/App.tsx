@@ -1,5 +1,5 @@
 import React from 'react';
-import Users from 'views/users/addUser';
+import Users from 'views/users';
 
 export default function App() {
   return (

@@ -5,7 +5,7 @@ import DialogForm from 'views/users/newUserDialog';
 describe('newUserForm', () => {
   beforeEach(() => {
     act(() => {
-      render(<DialogForm open loading={false} />);
+      render(<DialogForm open />);
     });
   });
 

@@ -32,6 +32,8 @@ const AddUser = ({ dispatch, loading, success, error }: Props) => {
   const [showAlert, setShowAlert] = useState(false);
   const classes = useStyles();
 
+  useEffect(() => {}, []);
+
   useEffect(() => {
     if (loading === false && error === '') {
       setOpen(false);

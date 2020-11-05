@@ -54,7 +54,7 @@ it('has a button to show the modal', () => {
 
 describe('Modal open', () => {
   beforeEach(async () => {
-    fireEvent.click(newUserButton);
+    fireEvent.click(screen.getByRole('button', { name: /nuevo/i }));
   });
 
   it('has a input for the username and has two inputs for the password', () => {
@@ -160,16 +160,23 @@ describe('Modal open', () => {
       beforeEach(async () => {
         server.use(
           rest.post('http://localhost:5000/users', (req, res, ctx) => {
-            return res(ctx.status(404));
+            return res(
+              ctx.status(404),
+              ctx.delay(200),
+              ctx.json({ error: 'mensaje' }),
+            );
           }),
         );
-
-        await fireEvent.click(screen.getByRole('button', { name: /guardar/i }));
       });
 
-      it('does not show the loading indicator and show error notification', async () => {
-        expect(screen.getByTestId('loading-indicator')).not.toBeVisible();
-        expect(await screen.findByText(/error/i)).toBeInTheDocument();
+      it('show error notification', async () => {
+        fireEvent.click(screen.getByRole('button', { name: /guardar/i }));
+        expect(
+          await screen.findByTestId('loading-indicator'),
+        ).not.toHaveProperty('visibility', 'hidden');
+        await waitFor(() => {
+          expect(screen.getByText(/error/i)).toBeInTheDocument();
+        });
       });
     });
   });

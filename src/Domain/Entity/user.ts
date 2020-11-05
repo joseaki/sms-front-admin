@@ -1,7 +1,8 @@
 export interface User {
-  id?: string;
+  id: number;
   username: boolean;
   password?: string;
+  apiKey?: string;
 }
 // export default class Todo {
 //   private _id: string;
