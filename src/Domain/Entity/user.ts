@@ -1,6 +1,6 @@
 export interface User {
   id: number;
-  username: boolean;
+  username: string;
   password?: string;
   apiKey?: string;
 }

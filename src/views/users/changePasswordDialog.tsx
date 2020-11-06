@@ -47,9 +47,13 @@ const ChangePasswordDialog = ({
   );
 
   const handleSave = (data: IChangePasswordFormInputs) => {
-    dispatch(changePassword(data.password, userId)).then(() => {
-      closeDialog();
-    });
+    dispatch(changePassword(data.password, userId))
+      .then(() => {
+        closeDialog();
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
   };
 
   return (

@@ -21,9 +21,16 @@ interface IFormInputs {
 const SearchBar = ({ error, dispatch }: Props) => {
   const [showAlert, setShowAlert] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+    return () => {
+      setIsMounted(false);
+    };
+  }, []);
 
   useEffect(() => {
-    if (error !== '') {
+    if (error !== '' && isMounted) {
       setShowAlert(true);
     }
   }, [error]);
@@ -32,14 +39,23 @@ const SearchBar = ({ error, dispatch }: Props) => {
   const { handleSubmit, register } = methods;
 
   const onSubmit = (data: IFormInputs) => {
+    // console.log('testtttt');
     setLoading(true);
     dispatch(searchUserByQuery(data.query))
-      .then(() => setLoading(false))
-      .catch(() => setLoading(false));
+      .then(() => {
+        console.log('test');
+        if (isMounted) setLoading(false);
+        console.log('test2');
+      })
+      .catch(() => {
+        if (isMounted) setLoading(false);
+      });
   };
 
   const handleSnackBarClose = () => {
-    setShowAlert(false);
+    if (isMounted) {
+      setShowAlert(false);
+    }
   };
 
   return (

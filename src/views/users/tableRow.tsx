@@ -10,7 +10,7 @@ interface Props {
   user: User;
   isChecked: boolean;
   loading?: boolean;
-  rowCheck: (e: React.MouseEvent, userId: number) => any;
+  rowCheck: (userId: number) => any;
   changePasswordClick: (userId: number) => any;
   getAPIKey: (userId: number) => any;
 }
@@ -27,10 +27,10 @@ const tableRow = ({
     <TableRow hover role="checkbox" selected={isChecked}>
       <TableCell padding="checkbox">
         <Checkbox
-          onClick={(e) => rowCheck(e, user.id)}
+          onClick={() => rowCheck(user.id)}
           checked={isChecked}
           inputProps={{
-            'aria-labelledby': 'enhanced-table-checkbox-1',
+            'aria-label': `table row checkbox user ${user.id}`,
           }}
         />
       </TableCell>
@@ -45,6 +45,7 @@ const tableRow = ({
             size="small"
             color="primary"
             variant="contained"
+            disabled={loading}
             onClick={() => getAPIKey(user.id)}
           >
             {loading ? 'Cargando' : 'Mostrar API Key'}

@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
+
 import {
   createStyles,
   lighten,
@@ -69,16 +69,12 @@ const TableToolbar = ({ numSelected, deleteItems }: Props) => {
       )}
       {numSelected > 0 ? (
         <Tooltip title="Borrar">
-          <IconButton aria-label="borrar" onClick={deleteItems}>
+          <IconButton aria-label="borrar" onClick={() => deleteItems()}>
             <DeleteIcon />
           </IconButton>
         </Tooltip>
       ) : (
-        <Tooltip title="Filtrar lista">
-          <IconButton aria-label="filtrar lista">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
+        ''
       )}
     </Toolbar>
   );

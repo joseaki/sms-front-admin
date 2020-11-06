@@ -40,7 +40,7 @@ function UsersTable({ dispatch, users }: Props): ReactElement {
     }
   };
 
-  const handleRowCheck = (e: React.MouseEvent, userId: number) => {
+  const handleRowCheck = (userId: number) => {
     const user = selectedRows.find((thisUser) => thisUser === userId);
     if (user) {
       const newList = selectedRows.filter((thisUser) => thisUser !== userId);

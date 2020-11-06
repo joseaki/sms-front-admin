@@ -38,7 +38,7 @@ afterEach(() => {
 
 beforeEach(() => {
   render(
-    <Root initialState={{}}>
+    <Root>
       <SearchBar />
     </Root>,
   );
@@ -98,5 +98,16 @@ describe('handle error', () => {
     await waitFor(() => {
       expect(screen.getByText(/error/i)).toBeInTheDocument();
     });
+    // jest.useFakeTimers();
+    // setTimeout(() => {
+    //   expect(component.state().fruits).toEqual(fruits);
+    // }, 3000);
+    // jest.runAllTimers();
+    await waitFor(
+      () => {
+        expect(screen.queryByText(/error/i)).toBeNull();
+      },
+      { timeout: 2300 },
+    );
   });
 });
