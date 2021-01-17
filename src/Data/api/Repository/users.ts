@@ -1,6 +1,6 @@
-import HttpClient from 'api/Client/http-client';
+import HttpClient from 'Data/api/Clients/http-client';
 import host from 'Config/vars';
-import UserMapper from 'api/Mapper/userMapper';
+import UserMapper from 'Data/api/Mapper/userMapper';
 import { User } from 'Domain/Entity/user';
 
 export default class UserRepo extends HttpClient {

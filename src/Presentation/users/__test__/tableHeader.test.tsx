@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import TableHeader from 'views/users/tableHeader';
+import TableHeader from 'Presentation/users/Components/tableHeader';
 
 const handleCheck = jest.fn();
 

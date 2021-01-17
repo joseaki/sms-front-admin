@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import UsersTable from 'views/users/usersTable';
+import UsersTable from 'Presentation/users/Components/usersTable';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import Root from 'Root';

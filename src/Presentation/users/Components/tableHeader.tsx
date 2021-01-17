@@ -1,4 +1,5 @@
 import React from 'react';
+// MUI Components
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';

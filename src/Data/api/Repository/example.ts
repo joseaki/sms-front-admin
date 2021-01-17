@@ -1,6 +1,6 @@
-import HttpClient from 'api/Client/http-client';
+import HttpClient from 'Data/api/Clients/http-client';
 import host from 'Config/vars';
-import TodoMapper from 'api/Mapper/example';
+import TodoMapper from 'Data/api/Mapper/example';
 import { Todo } from 'Domain/Entity/example';
 
 export default class ExampleRepo extends HttpClient {

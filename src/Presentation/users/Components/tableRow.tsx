@@ -1,9 +1,11 @@
 import React from 'react';
+// MUI Components
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import LockIcon from '@material-ui/icons/Lock';
+// Entities
 import { User } from 'Domain/Entity/user';
 
 interface Props {
@@ -15,14 +17,10 @@ interface Props {
   getAPIKey: (userId: number) => any;
 }
 
-const tableRow = ({
-  user,
-  isChecked,
-  rowCheck,
-  changePasswordClick,
-  getAPIKey,
-  loading,
-}: Props) => {
+const tableRow = (props: Props) => {
+  const { user, isChecked, rowCheck } = props;
+  const { changePasswordClick, getAPIKey, loading } = props;
+
   return (
     <TableRow hover role="checkbox" selected={isChecked}>
       <TableCell padding="checkbox">

@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react';
+import * as yup from 'yup';
+// MUI components
 import TextField from '@material-ui/core/TextField';
 
 interface Props {
-  register: any;
+  form: any;
   errors: any;
 }
 
@@ -12,11 +14,20 @@ export interface IUserFormInputs {
   passwordCheck: string;
 }
 
-function DialogForm({ register, errors }: Props): ReactElement {
+export const validationSchema = yup.object().shape({
+  username: yup.string().required('Ingrese un nombre se usuario'),
+  password: yup.string().required('Ingrese una contraseña'),
+  passwordCheck: yup
+    .string()
+    .oneOf([yup.ref('password'), undefined], 'Las contraseñas no coinciden!')
+    .required('Repita la contraseña anterior'),
+});
+
+function DialogForm({ form, errors }: Props): ReactElement {
   return (
-    <form>
+    <>
       <TextField
-        inputRef={register()}
+        inputRef={form()}
         required
         id="username"
         autoFocus
@@ -29,7 +40,7 @@ function DialogForm({ register, errors }: Props): ReactElement {
         helperText={errors.username && errors.username.message}
       />
       <TextField
-        inputRef={register()}
+        inputRef={form()}
         required
         id="password"
         type="password"
@@ -41,7 +52,7 @@ function DialogForm({ register, errors }: Props): ReactElement {
         helperText={errors.password && errors.password.message}
       />
       <TextField
-        inputRef={register()}
+        inputRef={form()}
         required
         id="passwordCheck"
         type="password"
@@ -52,7 +63,7 @@ function DialogForm({ register, errors }: Props): ReactElement {
         error={!!errors.passwordCheck}
         helperText={errors.passwordCheck && errors.passwordCheck.message}
       />
-    </form>
+    </>
   );
 }
 

@@ -6,7 +6,7 @@ import {
   waitFor,
   cleanup,
 } from '@testing-library/react';
-import SearchBar from 'views/users/searchBar';
+import SearchBar from 'Presentation/users/Components/searchBar';
 import Root from 'Root';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
@@ -15,7 +15,7 @@ const server = setupServer(
   rest.get('http://localhost:5000/users', (req, res, ctx) => {
     return res(
       ctx.status(200),
-      ctx.json({ id: 1, username: 'jose', password: 'jose' }),
+      ctx.json([{ id: 1, username: 'jose', password: 'jose' }]),
       ctx.delay(200),
     );
   }),
@@ -105,7 +105,7 @@ describe('handle error', () => {
     // jest.runAllTimers();
     await waitFor(
       () => {
-        expect(screen.queryByText(/error/i)).toBeNull();
+        expect(screen.queryByText('error')).toBeNull();
       },
       { timeout: 2300 },
     );

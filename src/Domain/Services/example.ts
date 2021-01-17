@@ -1,5 +1,5 @@
 import { Todo } from 'Domain/Entity/example';
-import ExampleRepo from 'api/Repository/example';
+import ExampleRepo from 'Data/api/Repository/example';
 
 export default class ExampleService {
   private todoRepo = new ExampleRepo();

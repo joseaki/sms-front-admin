@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import TableToolbar from 'views/users/tableToolbar';
+import TableToolbar from 'Presentation/users/Components/tableToolbar';
 
 const handleDelete = jest.fn();
 

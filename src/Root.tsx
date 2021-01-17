@@ -1,32 +1,30 @@
 import React, { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-
-import { configureStore, Action, EnhancedStore } from '@reduxjs/toolkit';
-import { ThunkAction } from 'redux-thunk';
-
-import rootReducer, { RootState } from './redux/rootReducer';
+import { Store } from 'redux/store';
 
 interface Props {
   children: ReactNode;
+  // eslint-disable-next-line react/require-default-props
   initialState?: any;
 }
-let store: EnhancedStore;
+
 export default ({ children, initialState }: Props) => {
-  store = configureStore({
-    reducer: rootReducer,
-    preloadedState: initialState,
-  });
+  const store = Store.config({ initialState });
 
-  if (process.env.NODE_ENV === 'development' && module.hot) {
-    module.hot.accept('./redux/rootReducer', () => {
-      // eslint-disable-next-line global-require
-      const newRootReducer = require('./redux/rootReducer').default;
-      store.replaceReducer(newRootReducer);
-    });
-  }
-
+  // const store = storeConfig({ initialState });
   return <Provider store={store}>{children}</Provider>;
 };
 
-export type AppDispatch = typeof store.dispatch;
-export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
+// export class ClassWithStaticMethod {
+//   static staticProperty = 'sssss';
+
+//   static staticMethod() {
+//     this.staticProperty = 'sssd';
+//     return 'static method has been called.';
+//   }
+// }
+
+// console.log(ClassWithStaticMethod.staticProperty);
+// // output: "someValue"
+// console.log(ClassWithStaticMethod.staticMethod());
+// console.log(ClassWithStaticMethod.staticProperty);

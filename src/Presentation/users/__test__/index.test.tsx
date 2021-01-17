@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow, ShallowWrapper } from 'enzyme';
-import MainUserView from 'views/users';
-import AddUSer from 'views/users/addUser';
-import SearchBar from 'views/users/searchBar';
-import UsersTable from 'views/users/usersTable';
+import MainUserView from 'Presentation/users';
+import AddUSer from 'Presentation/users/Components/addUser';
+import SearchBar from 'Presentation/users/Components/searchBar';
+import UsersTable from 'Presentation/users/Components/usersTable';
 
 let wrapped: ShallowWrapper;
 

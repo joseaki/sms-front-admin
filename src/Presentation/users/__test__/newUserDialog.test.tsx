@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import DialogForm from 'views/users/newUserDialog';
+import DialogForm from 'Presentation/users/Components/newUserDialog';
 
 describe('newUserForm', () => {
   beforeEach(() => {

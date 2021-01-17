@@ -8,7 +8,7 @@ import {
   waitFor,
   cleanup,
 } from '@testing-library/react';
-import AddUSer from 'views/users/addUser';
+import AddUSer from 'Presentation/users/Components/addUser';
 import Root from 'Root';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';

@@ -1,10 +1,11 @@
 import React from 'react';
+// MUI Components
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-
+// Styles
 import {
   createStyles,
   lighten,
@@ -73,9 +74,7 @@ const TableToolbar = ({ numSelected, deleteItems }: Props) => {
             <DeleteIcon />
           </IconButton>
         </Tooltip>
-      ) : (
-        ''
-      )}
+      ) : null}
     </Toolbar>
   );
 };

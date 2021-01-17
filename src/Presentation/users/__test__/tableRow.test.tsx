@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import TableRow from 'views/users/tableRow';
+import TableRow from 'Presentation/users/Components/tableRow';
 import { User } from 'Domain/Entity/user';
 
 const handleRowCheck = jest.fn();

@@ -1,29 +1,30 @@
 import React, { ReactElement, useEffect, useState } from 'react';
+// Packages
+import { useSelector } from 'react-redux';
+// MUI Components
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableContainer from '@material-ui/core/TableContainer';
-import TableHeader from 'views/users/tableHeader';
-import TableRow from 'views/users/tableRow';
 import Paper from '@material-ui/core/Paper';
-import { connect } from 'react-redux';
+// Local Components
+import TableHeader from 'Presentation/users/Components/tableHeader';
+import TableRow from 'Presentation/users/Components/tableRow';
+import TableToolbar from 'Presentation/users/Components/tableToolbar';
+import ChangePasswordDialog from 'Presentation/users/Components/changePasswordDialog';
+// Redux
 import { RootState } from 'redux/rootReducer';
-import { User } from 'Domain/Entity/user';
-import TableToolbar from 'views/users/tableToolbar';
-import ChangePasswordDialog from 'views/users/changePasswordDialog';
-import { getAPIKey, deleteUser } from 'redux/userSlice';
+// Services
+import { getAPIKey, deleteUser } from 'Domain/Services/user';
 
-interface Props {
-  dispatch: any;
-  users: User[];
-}
-
-function UsersTable({ dispatch, users }: Props): ReactElement {
+function UsersTable(): ReactElement {
   const [loadingUser, setLoadingUser] = useState<{ [x: number]: boolean }>([]);
   const [openChangePassword, setOpenChangePassword] = useState(false);
   const [numSelected, setNumSelected] = useState(0);
   const [rowCount, setRowCount] = useState(0);
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const [changePasswordId, setChangePasswordId] = useState(-1);
+
+  const users = useSelector((state: RootState) => state.users.userList);
 
   useEffect(() => {
     setRowCount(users.length);
@@ -76,7 +77,7 @@ function UsersTable({ dispatch, users }: Props): ReactElement {
   const handleGetAPIKey = (userId: number) => {
     const userLoad = { [userId]: true };
     setLoadingUser({ ...loadingUser, ...userLoad });
-    dispatch(getAPIKey(userId))
+    getAPIKey(userId)
       .then(() => {
         const userLoadF = { [userId]: false };
         setLoadingUser({ ...loadingUser, ...userLoadF });
@@ -88,17 +89,14 @@ function UsersTable({ dispatch, users }: Props): ReactElement {
   };
 
   const handleDeleteItems = () => {
-    const arr: any[] = [];
-    selectedRows.forEach((userId) => {
-      arr.push(dispatch(deleteUser(userId)));
-    });
+    const arr = selectedRows.map((userId) => deleteUser(userId));
     Promise.all(arr)
       .then(() => {
         setSelectedRows([]);
         setNumSelected(0);
       })
       .catch(() => {
-        console.log('error');
+        console.log('error no se puede borrar');
       });
   };
 
@@ -145,10 +143,4 @@ function UsersTable({ dispatch, users }: Props): ReactElement {
   );
 }
 
-const mapStateToProps = (state: RootState) => {
-  return {
-    users: state.users.userList,
-  };
-};
-
-export default connect(mapStateToProps)(UsersTable);
+export default UsersTable;

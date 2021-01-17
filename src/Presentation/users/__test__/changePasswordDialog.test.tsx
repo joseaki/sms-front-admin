@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import ChangePasswordDialog from 'views/users/changePasswordDialog';
+import ChangePasswordDialog from 'Presentation/users/Components/changePasswordDialog';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import Root from 'Root';
