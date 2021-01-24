@@ -6,11 +6,9 @@ import UsersTable from 'Presentation/users/Components/usersTable';
 
 // ! uncomment if you want to use dispatch inside component
 // interface Props {dispatch}
-interface Props {}
 
 // const Users = ({dispatch}: Props): ReactElement =>{
-const Users = (props: Props): ReactElement => {
-  console.log(props);
+const Users = (): ReactElement => {
   return (
     <div style={{ padding: '16px' }}>
       <Grid

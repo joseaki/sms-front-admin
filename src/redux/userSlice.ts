@@ -2,17 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../Domain/Entity/user';
 
 interface IUserState {
-  loading: boolean;
-  success: boolean;
-  error: string;
   user: User | null;
   userList: User[];
 }
 
 const initialState: IUserState = {
-  loading: false,
-  success: false,
-  error: '',
   user: null,
   userList: [],
 };
@@ -21,21 +15,6 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    loading(state) {
-      state.loading = true;
-      state.success = false;
-      state.error = '';
-    },
-    error(state) {
-      state.loading = false;
-      state.success = false;
-      state.error = 'error';
-    },
-    success(state) {
-      state.loading = false;
-      state.success = true;
-      state.error = '';
-    },
     addUser(state, action: PayloadAction<User>) {
       state.userList.push(action.payload);
     },
@@ -57,6 +36,5 @@ export const userSlice = createSlice({
   },
 });
 
-export const { error, loading } = userSlice.actions;
-
+// export const { addUser } = userSlice.actions;
 export default userSlice.reducer;

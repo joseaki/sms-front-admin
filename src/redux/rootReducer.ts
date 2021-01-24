@@ -1,15 +1,11 @@
 /* eslint-disable import/no-cycle */
 import { combineReducers } from '@reduxjs/toolkit';
-import todos from 'redux/todoSlice';
-import users from 'redux/userSlice';
-import { reducer as formReducer } from 'redux-form';
-import visibilityFilter from 'redux/visibilityFilterSlice';
+import usersReducer from 'redux/userSlice';
+import generalReducer from 'redux/generalSlice';
 
 const rootReducer = combineReducers({
-  todos,
-  users,
-  visibilityFilter,
-  form: formReducer,
+  general: generalReducer,
+  users: usersReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

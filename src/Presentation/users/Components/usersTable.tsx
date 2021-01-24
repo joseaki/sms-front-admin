@@ -89,8 +89,7 @@ function UsersTable(): ReactElement {
   };
 
   const handleDeleteItems = () => {
-    const arr = selectedRows.map((userId) => deleteUser(userId));
-    Promise.all(arr)
+    Promise.all(selectedRows.map((userId) => deleteUser(userId)))
       .then(() => {
         setSelectedRows([]);
         setNumSelected(0);

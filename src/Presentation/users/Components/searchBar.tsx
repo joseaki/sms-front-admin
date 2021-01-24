@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { useForm } from 'react-hook-form';
-import { RootState } from 'redux/rootReducer';
-import { connect, useSelector } from 'react-redux';
 import { getUsersByQuery } from 'Domain/Services/user';
 
 interface IFormInputs {
@@ -12,13 +10,20 @@ interface IFormInputs {
 }
 
 const SearchBar = () => {
-  const loading = useSelector((state: RootState) => state.users.loading);
+  const [loading, setLoading] = useState(false);
 
   const methods = useForm<IFormInputs>();
   const { handleSubmit, register } = methods;
 
-  const onSubmit = (data: IFormInputs) => {
-    getUsersByQuery(data.query);
+  const onSubmit = async (data: IFormInputs) => {
+    setLoading(true);
+    getUsersByQuery(data.query)
+      .then(() => {
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -47,4 +52,4 @@ const SearchBar = () => {
   );
 };
 
-export default connect(null)(SearchBar);
+export default SearchBar;

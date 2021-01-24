@@ -9,6 +9,11 @@
       "username": "joseaki@icloud.com",
       "password": "admin2",
       "id": 4
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "id": 5
     }
   ]
 }
