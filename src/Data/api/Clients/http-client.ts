@@ -28,9 +28,7 @@ export default class HttpClient {
     this.instance.interceptors.request.use((config: AxiosRequestConfig) => {
       return new Promise((resolve) => {
         const token = localStorage.getItem('token');
-        const asd = `Bearer ${token}`;
-        // eslint-disable-next-line no-param-reassign
-        config.headers.Authorization = asd;
+        config.headers.Authorization = `Bearer ${token}`;
         resolve(config);
       });
     });

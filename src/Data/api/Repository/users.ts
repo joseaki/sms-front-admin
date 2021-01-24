@@ -1,11 +1,11 @@
 import HttpClient from 'Data/api/Clients/http-client';
-import host from 'Config/vars';
+import config from 'Config/vars';
 import UserMapper from 'Data/api/Mapper/userMapper';
 import { User } from 'Domain/Entity/user';
 
 export default class UserRepo extends HttpClient {
   constructor() {
-    super(host || '');
+    super(config.host);
   }
 
   saveUser(user: User): Promise<User> {
