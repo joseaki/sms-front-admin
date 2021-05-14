@@ -2,6 +2,7 @@ import HttpClient from 'Data/api/Clients/http-client';
 import config from 'Config/vars';
 import UserMapper from 'Data/api/Mapper/userMapper';
 import { User } from 'Domain/Entity/user';
+import axios from 'axios';
 
 export default class UserRepo extends HttpClient {
   constructor() {
@@ -46,8 +47,11 @@ export default class UserRepo extends HttpClient {
   }
 
   getAPIKey(userId: number): Promise<string> {
+    const nexa = axios.create({
+      baseURL: 'https://example.com',
+    });
     return new Promise((resolve, reject) => {
-      this.instance
+      nexa
         .get(`/users/${userId}/getapikey`)
         .then((resp) => {
           resolve(resp.data.apikey);
