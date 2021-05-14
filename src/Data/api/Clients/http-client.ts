@@ -12,7 +12,7 @@ export default class HttpClient {
   protected readonly instance: AxiosInstance;
 
   /**
-   *Creates an instance of HttpClient.
+   *Creates an instance of HttpClident.
    * @param {string} baseURL
    * @memberof HttpClient
    */
