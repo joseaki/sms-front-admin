@@ -35,7 +35,7 @@ const SearchBar = () => {
               inputRef={register()}
               type="text"
               fullWidth
-              label="Nombre de usuario"
+              label="Nombre de usuarios"
               name="query"
               id="query"
             />

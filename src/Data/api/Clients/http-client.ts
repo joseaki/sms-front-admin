@@ -18,7 +18,7 @@ export default class HttpClient {
    */
   public constructor(baseURL: string) {
     this.instance = axios.create({
-      baseURL,
+      baseURL: 'http://localhost:3000',
     });
 
     this.initializeResponseInterceptor();

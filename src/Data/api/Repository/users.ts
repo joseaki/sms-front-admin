@@ -12,10 +12,14 @@ export default class UserRepo extends HttpClient {
     return new Promise((resolve, reject) => {
       try {
         this.instance
-          .post('/users', {
-            username: user.username,
-            password: user.password,
-          })
+          .post(
+            '/auth/usersave',
+            {
+              username: user.username,
+              password: user.password,
+            },
+            { withCredentials: true },
+          )
           .then((resp) => {
             const userResponse: User = UserMapper(resp.data);
             resolve(userResponse);
@@ -30,7 +34,7 @@ export default class UserRepo extends HttpClient {
   searchUsers(query: string): Promise<User[]> {
     return new Promise((resolve, reject) => {
       this.instance
-        .get(`/users?q=${query}`)
+        .get(`/auth/user`, { withCredentials: true })
         .then((resp) => {
           const searchedUsers: User[] = resp.data.map((user: any) =>
             UserMapper(user),
