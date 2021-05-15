@@ -1,14 +1,18 @@
 import Grid from '@material-ui/core/Grid';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import NewUser from 'Presentation/users/Components/addUser';
 import SearchBar from 'Presentation/users/Components/searchBar';
 import UsersTable from 'Presentation/users/Components/usersTable';
+import { saveUser } from 'Domain/Services/user';
 
 // ! uncomment if you want to use dispatch inside component
 // interface Props {dispatch}
 
 // const Users = ({dispatch}: Props): ReactElement =>{
 const Users = (): ReactElement => {
+  useEffect(() => {
+    saveUser({ id: 0, username: '123', password: '123' });
+  }, []);
   return (
     <div style={{ padding: '16px' }}>
       <Grid
