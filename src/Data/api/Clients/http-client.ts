@@ -18,7 +18,7 @@ export default class HttpClient {
    */
   public constructor(baseURL: string) {
     this.instance = axios.create({
-      baseURL: 'http://localhost:3000',
+      baseURL: 'https://authentication-hanpiy.herokuapp.com',
     });
 
     this.initializeResponseInterceptor();
